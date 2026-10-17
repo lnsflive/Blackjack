@@ -5,15 +5,13 @@
     <v-btn v-if="error" to="/" color="primary">Return to Blackjack</v-btn>
   </v-container>
 </template>
-<script>
+<script setup lang="ts">
 import { completeGoogleLogin } from '~/utils/google-auth'
-export default {
-  data: () => ({error: ''}),
-  async mounted() {
-    const search = window.location.search
-    window.history.replaceState(null, '', window.location.pathname)
-    try { window.location.replace(await completeGoogleLogin(search)) }
-    catch (_) { this.error = 'Sign-in could not be completed. Please try again.' }
-  }
-}
+const error = ref('')
+onMounted(async () => {
+  const search = window.location.search
+  window.history.replaceState(null, '', window.location.pathname)
+  try { window.location.replace(await completeGoogleLogin(search)) }
+  catch { error.value = 'Sign-in could not be completed. Please try again.' }
+})
 </script>

@@ -9,13 +9,9 @@
   </v-app>
 </template>
 
-<script setup>
-const props = defineProps({
-  error: {
-    type: Object,
-    required: true,
-  },
-})
+<script setup lang="ts">
+import type { NuxtError } from '#app'
+const props = defineProps<{ error: NuxtError }>()
 
 const title = computed(() => props.error.statusCode === 404 ? '404 Not Found' : 'An error occurred')
 useHead({ title })

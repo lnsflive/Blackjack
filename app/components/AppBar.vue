@@ -11,9 +11,13 @@
     </v-row>
 </template>
 
-<script>
-export default {
-    name: 'topbar',
-    props: ['bank', 'bet', 'bet2', 'hasBet2', 'splitColor', 'playerName']
-}
+<script setup lang="ts">
+defineProps<{
+  bank: number
+  bet: number
+  bet2?: number
+  hasBet2: boolean
+  splitColor?: string
+  playerName: string | null
+}>()
 </script>

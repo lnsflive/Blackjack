@@ -1,3 +1,5 @@
+import { defineNuxtConfig } from 'nuxt/config'
+
 const baseURL = process.env.APP_BASE_PATH || '/'
 const apiBase = process.env.API_BASE_URL || 'https://api.jaimegonzalezjr.com'
 

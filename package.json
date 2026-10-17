@@ -2,6 +2,7 @@
   "name": "cards",
   "version": "1.0.0",
   "private": true,
+  "type": "module",
   "packageManager": "npm@10.9.7",
   "engines": {
     "node": ">=22.19.0"
@@ -11,8 +12,11 @@
     "build": "nuxt build",
     "start": "nuxt preview",
     "generate": "nuxt generate",
-    "test": "npm run test:unit && npm run test:e2e",
-    "test:auth": "node tests/auth.cjs",
+    "simulate": "tsx scripts/simulate-blackjack.ts",
+    "check:source": "tsx scripts/check-source-policy.ts",
+    "typecheck": "nuxt typecheck && tsc -p tsconfig.tools.json",
+    "test": "npm run check:source && npm run typecheck && npm run test:unit && npm run test:e2e",
+    "test:auth": "vitest run tests/unit/auth.test.ts",
     "test:unit": "vitest run",
     "test:unit:watch": "vitest",
     "test:e2e": "playwright test",
@@ -26,7 +30,11 @@
   },
   "devDependencies": {
     "@playwright/test": "^1.64.1",
+    "@types/node": "^26.6.5",
     "sass-embedded": "^1.105.2",
-    "vitest": "^5.0.5"
+    "tsx": "^4.23.15",
+    "typescript": "~5.9.3",
+    "vitest": "^5.0.5",
+    "vue-tsc": "^3.3.13"
   }
 }

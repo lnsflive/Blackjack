@@ -1,8 +1,6 @@
 # BLACK JACK
 
-### `Black Jack Game - With working leaderboard`
-
-Blackjack game built with Nuxt, Vue, and Vuetify.
+Blackjack game built with Nuxt, Vue, Vuetify, and TypeScript. Vue components use the Composition API with `<script setup lang="ts">`. The browser game and the command-line simulator use the same rules engine in `game/blackjack.ts`.
 
 Visit official game at: [Black Jack Game](https://jaimegonzalezjr.com/games/blackjack/).
 
@@ -10,6 +8,24 @@ Visit official game at: [Black Jack Game](https://jaimegonzalezjr.com/games/blac
 * Nuxt 4 and Vue 3
 * Vuetify 3
 * Strapi headless CMS
+
+## Rules
+
+The game uses this disclosed rules profile:
+
+* Six 52-card decks with a 75% cut point
+* Dealer peek for blackjack and stand on all 17s, including soft 17
+* Natural blackjack pays 3:2; a normal win pays 1:1
+* Insurance pays 2:1 and is offered only against a dealer Ace
+* Double on any first two cards, including after a split
+* Resplit equal ranks to four hands
+* Split Aces once; each split Ace receives one card
+* Late surrender after the dealer checks for blackjack
+* Even-dollar wagers with a $10 minimum, so 3:2 and half-wager settlements remain whole-dollar account values
+
+The game does not claim a fixed RTP. Return depends on the rules, player decisions, and the definition of wagered money. The simulator reports both the loss per original round wager and the return on all action, including split and double wagers.
+
+This repository implements game rules and verifies their math. It is not a Nevada gaming license, laboratory certification, or approval to accept real-money wagers.
 
 ![Screenshot](https://github.com/lnsflive/BlackJack/blob/master/static/img/ss1.png)
 ![Screenshot](https://github.com/lnsflive/BlackJack/blob/master/static/img/ss2.png)
@@ -34,7 +50,18 @@ npm run generate
 # Run unit and browser tests
 npm run test:unit
 npm run test:e2e
+
+# Check TypeScript and the Composition API source policy
+npm run typecheck
+npm run check:source
+
+# Simulate one million basic-strategy rounds with a repeatable seed
+npm run simulate -- --rounds=1000000 --seed=20261017
 ```
+
+The simulator declines insurance because insurance has negative expected value without information about the remaining shoe. Change `--seed` to sample another shuffle sequence.
+
+`npm test` runs the source policy check, type checking, unit tests, and browser tests. Application source, configuration, scripts, and tests use TypeScript. The source policy rejects JavaScript files and Vue scripts without both `setup` and `lang="ts"`. Generated bundles and the externally hosted shared-account library remain JavaScript browser assets.
 
 ## Google account login and Web Station deployment
 

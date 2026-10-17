@@ -1,13 +1,23 @@
 <template><div><div ref="form" /><p v-if="error" role="alert">{{ error }}</p></div></template>
-<script>
+<script setup lang="ts">
 import { mountAccountForm } from '~/utils/google-auth'
-export default {
-  data: () => ({error:'',accountForm:null}),
-  async mounted() {
-    try { this.accountForm = await mountAccountForm(this.$refs.form, () => this.$emit('signed-in')) }
-    catch (error) { this.error = error.message }
-  },
-  beforeDestroy() {if(this.accountForm)this.accountForm.destroy()},
-  beforeUnmount() {if(this.accountForm)this.accountForm.destroy()}
-}
+import type { AccountFormHandle } from '~/utils/google-auth'
+
+const emit = defineEmits<{ 'signed-in': [] }>()
+const form = ref<HTMLElement | null>(null)
+const error = ref('')
+let accountForm: AccountFormHandle | null = null
+let disposed = false
+
+onMounted(async () => {
+  if (!form.value) return
+  try {
+    const handle = await mountAccountForm(form.value, () => emit('signed-in'))
+    if (disposed) handle.destroy()
+    else accountForm = handle
+  } catch (failure) {
+    error.value = failure instanceof Error ? failure.message : 'Unable to load account controls.'
+  }
+})
+onBeforeUnmount(() => { disposed = true; accountForm?.destroy() })
 </script>
