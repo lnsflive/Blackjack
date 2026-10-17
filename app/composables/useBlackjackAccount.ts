@@ -24,7 +24,6 @@ export function useBlackjackAccount(dependencies: AccountDependencies) {
   const authError = ref('')
   const profileLoaded = ref(false)
   const createPlayer = ref(false)
-  const endGame = ref(false)
   const tempPlayer = ref('')
   const invalid = computed(() => tempPlayer.value.trim().length < 3 || tempPlayer.value.trim().length > 10)
   let saveQueue = Promise.resolve()
@@ -43,7 +42,6 @@ export function useBlackjackAccount(dependencies: AccountDependencies) {
     playerName.value = profile.name
     bankAmount.value = profile.bank
     createPlayer.value = false
-    endGame.value = true
     await nextTick()
     profileLoaded.value = true
   }
@@ -56,7 +54,6 @@ export function useBlackjackAccount(dependencies: AccountDependencies) {
       playerName.value = null
       bankAmount.value = 0
       players.value = []
-      endGame.value = false
       createPlayer.value = false
       authError.value = 'Please sign in with Google to continue.'
     } else authError.value = 'Unable to load or save your account. Please retry before continuing.'
@@ -123,7 +120,7 @@ export function useBlackjackAccount(dependencies: AccountDependencies) {
 
   return {
     user, userID, bankAmount, playerName, players, loading, busy, authError, profileLoaded,
-    createPlayer, endGame, tempPlayer, invalid, authConfig, applyProfile, loadAccount,
+    createPlayer, tempPlayer, invalid, authConfig, applyProfile, loadAccount,
     submitPlayer, logout, handleError, waitForSaves: () => saveQueue,
   }
 }

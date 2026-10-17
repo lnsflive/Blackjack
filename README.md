@@ -27,9 +27,22 @@ The game does not claim a fixed RTP. Return depends on the rules, player decisio
 
 This repository implements game rules and verifies their math. It is not a Nevada gaming license, laboratory certification, or approval to accept real-money wagers.
 
-![Screenshot](https://github.com/lnsflive/BlackJack/blob/master/static/img/ss1.png)
-![Screenshot](https://github.com/lnsflive/BlackJack/blob/master/static/img/ss2.png)
-![Screenshot](https://github.com/lnsflive/BlackJack/blob/master/static/img/ss3.png)
+## Table layout
+
+Betting chips, hand actions, results, and the leaderboard stay on the blackjack table. Selecting chips previews a wager. The bank changes when you press Deal. A settled hand stays visible while you choose your next wager.
+
+Desktop layouts show the leaderboard beside the hands. On smaller screens, the leaderboard expands inline below the game. Split hands wrap into two columns on phones and tablets.
+
+## Screenshots
+
+These screenshots come from the browser tests with seeded hands and synthetic player accounts.
+
+![Desktop blackjack table](static/img/ss1.png)
+![Tablet blackjack table with split hands](static/img/ss2.png)
+![Phone blackjack table](static/img/ss3.png)
+![Four-hand split on the desktop table](static/img/ss4.png)
+
+To refresh the screenshots, run `UPDATE_REPO_SCREENSHOTS=1 npm run test:e2e`.
 
 ## Build Setup
 
