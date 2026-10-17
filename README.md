@@ -2,14 +2,14 @@
 
 ### `Black Jack Game - With working leaderboard`
 
-Complete matching game done with VueJS
+Blackjack game built with Nuxt, Vue, and Vuetify.
 
 Visit official game at: [Black Jack Game](https://jaimegonzalezjr.com/games/blackjack/).
 
 ## Built With
-* VueJs (Front-End)
-* Vuetify (Styling Framework)
-* Strapi Headless CMS (Back-End)
+* Nuxt 4 and Vue 3
+* Vuetify 3
+* Strapi headless CMS
 
 ![Screenshot](https://github.com/lnsflive/BlackJack/blob/master/static/img/ss1.png)
 ![Screenshot](https://github.com/lnsflive/BlackJack/blob/master/static/img/ss2.png)
@@ -18,18 +18,22 @@ Visit official game at: [Black Jack Game](https://jaimegonzalezjr.com/games/blac
 ## Build Setup
 
 ```bash
-# install dependencies
-$ yarn install
+# Install dependencies
+npm install
 
-# serve with hot reload at localhost:3000
-$ yarn dev
+# Start the development server at localhost:3000
+npm run dev
 
-# build for production and launch server
-$ yarn build
-$ yarn start
+# Build and preview the production server
+npm run build
+npm run start
 
-# generate static project
-$ yarn generate
+# Generate the static site
+npm run generate
+
+# Run unit and browser tests
+npm run test:unit
+npm run test:e2e
 ```
 
 ## Google account login and Web Station deployment
@@ -37,7 +41,7 @@ $ yarn generate
 The browser uses native Strapi REST with a shared strapi_jwt local-storage bearer token. Google returns to this app's own `/games/blackjack/auth/google` callback. The reusable account client and form are served from `https://api.jaimegonzalezjr.com/auth/client.v1.js` and maintained in the Strapi repository. Native game collections enforce account ownership on the server. Existing anonymous names require administrator migration. API_BASE_URL defaults to https://api.jaimegonzalezjr.com.
 
 
-The legacy Nuxt 2 build pins matching Vue 2.6.14 renderer/compiler versions and enables the OpenSSL compatibility provider for its Webpack 4 build on Node 22. Framework modernization remains separate work.
+The app uses Nuxt 4, Vue 3, Vite, and Vuetify 3 on Node 22.19 or newer. Playwright builds the production app before running its browser tests.
 
 Account controls mount inside this app's own layout. Strapi Content Manager → OAuth Applications configures callback/return URLs, Google/password options, registration, and shared/separate sessions. Current configuration is Google with shared login. No provider secrets belong in frontend environment files.
 

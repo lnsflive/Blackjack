@@ -2,7 +2,7 @@ const fs = require('node:fs');
 const vm = require('node:vm');
 const assert = require('node:assert/strict');
 const game = 'blackjack';
-const file = game === 'blackjack' ? '../pages/index.vue' : '../src/pages/Index.vue';
+const file = game === 'blackjack' ? '../app/pages/index.vue' : '../src/pages/Index.vue';
 const source = fs.readFileSync(require('node:path').join(__dirname, file), 'utf8');
 const script = source.match(/<script>([\s\S]*?)<\/script>/)[1].replace(/^import .*$/gm, '').replace('export default', 'module.exports =');
 const requests = [];

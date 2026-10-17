@@ -2,11 +2,15 @@
   "name": "cards",
   "version": "1.0.0",
   "private": true,
+  "packageManager": "npm@10.9.7",
+  "engines": {
+    "node": ">=22.19.0"
+  },
   "scripts": {
-    "dev": "NODE_OPTIONS=--openssl-legacy-provider nuxt",
-    "build": "NODE_OPTIONS=--openssl-legacy-provider nuxt build",
-    "start": "nuxt start",
-    "generate": "NODE_OPTIONS=--openssl-legacy-provider nuxt generate",
+    "dev": "nuxt dev",
+    "build": "nuxt build",
+    "start": "nuxt preview",
+    "generate": "nuxt generate",
     "test": "npm run test:unit && npm run test:e2e",
     "test:auth": "node tests/auth.cjs",
     "test:unit": "vitest run",
@@ -15,19 +19,14 @@
     "test:e2e:ui": "playwright test --ui"
   },
   "dependencies": {
-    "@nuxtjs/axios": "^5.13.6",
-    "@vueuse/sound": "^1.1.7",
-    "core-js": "^3.15.1",
-    "nuxt": "^2.15.7",
-    "vue": "2.6.14",
-    "vue-server-renderer": "2.6.14",
-    "vue-template-compiler": "2.6.14",
-    "vuetify": "^2.5.5"
+    "@mdi/font": "^7.4.47",
+    "nuxt": "4.5.2",
+    "vuetify": "^3.13.7",
+    "vuetify-nuxt-module": "^1.0.0-rc.6"
   },
   "devDependencies": {
-    "@nuxtjs/vuetify": "^1.12.1",
     "@playwright/test": "^1.64.1",
-    "push-dir": "^0.4.1",
+    "sass-embedded": "^1.105.2",
     "vitest": "^5.0.5"
   }
 }

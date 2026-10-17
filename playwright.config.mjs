@@ -17,9 +17,10 @@ export default defineConfig({
     },
   ],
   webServer: {
-    command: 'npm run dev -- --hostname 127.0.0.1 --port 3000',
+    command: 'npx nuxt cleanup && npm run build && npm run start -- --host=127.0.0.1 --port=3000',
     env: {
       APP_BASE_PATH: '/',
+      BUILD_OUTPUT: '.output/public',
     },
     url: 'http://127.0.0.1:3000',
     reuseExistingServer: !process.env.CI,

@@ -200,7 +200,7 @@
             <v-btn v-if="hasSplit" class="ma-2 grow pa-8" @click="hitMe2()">Hit Me</v-btn>
             <v-btn v-else class="ma-2 grow pa-8" @click="hitMe()">Hit Me</v-btn>
             <v-btn class="ma-2 grow pa-8" @click="stay()">Stay</v-btn>
-            <v-btn v-if="canSplit && this.originalBet <= this.bankAmount" class="ma-2 grow pa-8" @click="split()">Split</v-btn>
+            <v-btn v-if="canSplit && originalBet <= bankAmount" class="ma-2 grow pa-8" @click="split()">Split</v-btn>
             <v-btn v-if="canDouble" class="ma-2 grow pa-8" @click="doubleDown()">Double Down</v-btn>
           </v-row>
         </v-col>
@@ -219,8 +219,6 @@ var loseSound = new Audio('./sounds/lose.mp3')
 var winSound = new Audio('./sounds/win.mp3')
 var tieSound = new Audio('./sounds/tie.mp3')
 var betSound = new Audio('./sounds/bet.mp3')
-import defaultApp from '@/layouts/default.vue'
-import AppBar from '@/components/AppBar.vue'
 export default {
   data: () => ({
     cardArray : ["2","3","4","5","6","7","8","9","10","J","Q","K","A"],
@@ -277,18 +275,16 @@ export default {
     playerName: null,
     headers: [
       {
-        text: 'Players',
+        title: 'Players',
         align: 'center',
         sortable: false,
-        value: 'name',
-        class: 'primary'
+        key: 'name',
       },
       {
-        text: 'Bank',
+        title: 'Bank',
         align: 'center',
         sortable: false,
-        value: 'bank',
-        class: 'primary'
+        key: 'bank',
       }
     ],
     players: []
@@ -820,9 +816,6 @@ export default {
           return true
         }
     }
-  },
-  components:{
-    defaultApp, AppBar
   }
 }
 </script>
@@ -867,10 +860,10 @@ border-radius: 100px;
 }
 </style>
 <style lang="scss" scoped>
-.v-data-table::v-deep th {
+.v-data-table :deep(th) {
   font-size: 24px !important;
 }
-.v-data-table::v-deep td {
+.v-data-table :deep(td) {
   font-size: 20px !important;
 }
 </style>
