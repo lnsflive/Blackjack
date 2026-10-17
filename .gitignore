@@ -91,6 +91,10 @@ sw.*
 
 .deploy-backups/
 
+# Test artifacts
+playwright-report/
+test-results/
+
 # Private local environment overrides
 .env
 .env.*

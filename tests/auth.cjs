@@ -17,14 +17,14 @@ const call = async (method, url, body) => {
 const axios = {$get: u => call('GET',u), $post:(u,b)=>call('POST',u,b), $put:(u,b)=>call('PUT',u,b)};
 const api = {get:async u=>({data:await call('GET',u)}),post:async(u,b)=>({data:await call('POST',u,b)}),put:async(u,b)=>({data:await call('PUT',u,b)})};
 let navigatedTo;
-const context = {AccountForm:{},getAccounts:async()=>({storageKey:()=>"strapi_jwt"}),MemoryLayout:{},startGoogleLogin:async()=>"https://strapi.jaimegonzalezjr.com/connect/google?callback=fixture",localStorage:{getItem(){return token},removeItem(){token=null}},URL,window:{location:{assign(u){navigatedTo=u},reload(){}}},module:{exports:{}},Audio:function(){},defineComponent:x=>x,api,Notify:{create(){}},defaultApp:{},AppBar:{},clearInterval(){},Promise,console};
+const context = {AccountForm:{},getAccounts:async()=>({storageKey:()=>"strapi_jwt"}),MemoryLayout:{},startGoogleLogin:async()=>"https://api.jaimegonzalezjr.com/connect/google?callback=fixture",localStorage:{getItem(){return token},removeItem(){token=null}},URL,window:{location:{assign(u){navigatedTo=u},reload(){}}},module:{exports:{}},Audio:function(){},defineComponent:x=>x,api,Notify:{create(){}},defaultApp:{},AppBar:{},clearInterval(){},Promise,console};
 vm.runInNewContext(script, context);
 const options=context.module.exports;
 function instance(){const obj={...options.data(),$axios:axios,$nextTick:fn=>fn()};for(const [name,fn] of Object.entries(options.methods)) obj[name]=fn.bind(obj);return obj;}
 function failure(status,error){return Object.assign(new Error('API failure'),{response:{status,data:{error}}});}
 (async()=>{
  let configApp=instance();assert.equal(configApp.authConfig().headers.Authorization,'Bearer test-token');assert.equal(configApp.authConfig().withCredentials,false);token=null;assert.throws(()=>configApp.authConfig(),/Sign in required/);token='test-token';
- let loginApp=instance();await loginApp.login();assert.equal(navigatedTo,'https://strapi.jaimegonzalezjr.com/connect/google?callback=fixture');assert.ok(!source.includes('/Projects/TimeForge/'));
+ let loginApp=instance();await loginApp.login();assert.equal(navigatedTo,'https://api.jaimegonzalezjr.com/connect/google?callback=fixture');assert.ok(!source.includes('/Projects/TimeForge/'));
 
  let app=instance();replies=[{id:7},[game==='blackjack'?{id:11,name:'Returning',bank:'1234'}:{id:11,player:'returning',score:'500'}],[]];
  await app.loadAccount();assert.equal(game==='blackjack'?app.playerName:app.username,game==='blackjack'?'Returning':'returning');assert.equal(game==='blackjack'?app.bankAmount:app.highScore,game==='blackjack'?1234:500);assert.throws(()=>app.applyProfile(game==='blackjack'?{bank:'invalid'}:{score:'invalid'}),/Invalid saved/);assert.ok(requests.some(r=>r.url===(game==='blackjack'?'/blackjacks?portfolioUserId=7':'/memorygames?portfolioUserId=7')));

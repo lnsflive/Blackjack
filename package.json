@@ -7,7 +7,12 @@
     "build": "NODE_OPTIONS=--openssl-legacy-provider nuxt build",
     "start": "nuxt start",
     "generate": "NODE_OPTIONS=--openssl-legacy-provider nuxt generate",
-    "test:auth": "node tests/auth.cjs"
+    "test": "npm run test:unit && npm run test:e2e",
+    "test:auth": "node tests/auth.cjs",
+    "test:unit": "vitest run",
+    "test:unit:watch": "vitest",
+    "test:e2e": "playwright test",
+    "test:e2e:ui": "playwright test --ui"
   },
   "dependencies": {
     "@nuxtjs/axios": "^5.13.6",
@@ -21,6 +26,8 @@
   },
   "devDependencies": {
     "@nuxtjs/vuetify": "^1.12.1",
-    "push-dir": "^0.4.1"
+    "@playwright/test": "^1.64.1",
+    "push-dir": "^0.4.1",
+    "vitest": "^5.0.5"
   }
 }

@@ -16,7 +16,7 @@ async function library(apiBase) {
 }
 export async function getAccounts(apiBase = 'https://api.jaimegonzalezjr.com') {
   if (!clientPromise) clientPromise = library(apiBase).then(async sdk => {
-    const client = sdk.create({app:'blackjack',apiBase})
+    const client = sdk.create({app:'blackjack',apiBase,brokerBase:apiBase})
     await client.initialize()
     return client
   }).catch(error => {clientPromise=null;throw error})
